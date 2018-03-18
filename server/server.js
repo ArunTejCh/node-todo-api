@@ -22,6 +22,17 @@ app.post('/todos',(req, res) => {
     })
 });
 
+app.get('/todos', (req, res) => {
+    Todo.find().then((todos) => {
+        res.status(200).send({
+            todos
+        })
+    }, (err) => {
+        console.log('Unable to fetch todos ', err);
+        res.status(400).send(err);
+    })
+})
+
 
 
 app.listen(3000, () => {
